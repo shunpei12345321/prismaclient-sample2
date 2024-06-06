@@ -9,6 +9,7 @@ export const POST = async (req: Request, res: NextResponse) => {
 			name,
 			email,
 			fax,
+			age,
 		},
 	});
 	return NextResponse.json(new_user);

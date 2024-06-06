@@ -78,6 +78,20 @@ const NewUser = () => {
 						className="border-2 p-2"
 					/>
 				</div>
+				<div className="flex flex-col mb-4">
+					<label htmlFor="age" className="mb-2">
+						age
+					</label>
+					<input
+						onChange={(event) => {
+							setAge(event.target.value);
+						}}
+						type="number"
+						name="age"
+						id="age"
+						className="border-2 p-2"
+					/>
+				</div>
 
 				{isFetching ? (
 					<p className="text-center">Creating...</p>
