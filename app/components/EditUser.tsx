@@ -10,6 +10,7 @@ const EditUser = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [fax, setFax] = useState("");
+	const [age, setAge] = useState("");
 	const [isFetching, setIsFetching] = useState(false);
 
 	useEffect(() => {
@@ -21,6 +22,7 @@ const EditUser = () => {
 				setName(user.name);
 				setEmail(user.email);
 				setFax(user.fax);
+				setAge(user.age);
 			}
 			setIsFetching(false);
 		};
@@ -37,7 +39,7 @@ const EditUser = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ id, name, email, fax }),
+				body: JSON.stringify({ id, name, email, fax, age }),
 			});
 			const user = await res.json();
 		}
@@ -97,14 +99,14 @@ const EditUser = () => {
 					/>
 				</div>
 				<div className="flex flex-col mb-4">
-					<label htmlFor="fax" className="mb-2">
+					<label htmlFor="email" className="mb-2">
 						fax
 					</label>
 					<input
 						onChange={(event) => {
 							setFax(event.target.value);
 						}}
-						type="fax"
+						type="text"
 						name="fax"
 						id="fax"
 						value={fax}

@@ -9,7 +9,6 @@ const NewUser = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [fax, setFax] = useState("");
-	const [age, setAge] = useState("");
 	const [isFetching, setIsFetching] = useState(false);
 
 	const handleSubmit = async () => {
@@ -20,7 +19,7 @@ const NewUser = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name, email, fax, age }),
+				body: JSON.stringify({ name, email, fax }),
 			});
 			const data = await response.json();
 		}
@@ -72,7 +71,7 @@ const NewUser = () => {
 						onChange={(event) => {
 							setFax(event.target.value);
 						}}
-						type="fax"
+						type="text"
 						name="fax"
 						id="fax"
 						className="border-2 p-2"
@@ -94,7 +93,7 @@ const NewUser = () => {
 			<div className="flex flex-col w-full">
 				<p className="font-bold">REST-API Payload:</p>
 				<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
-					{JSON.stringify({ name, email, fax, age })}
+					{JSON.stringify({ name, email, fax })}
 				</div>
 			</div>
 		</div>
