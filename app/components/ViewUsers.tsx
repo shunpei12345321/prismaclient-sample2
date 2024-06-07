@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 const ViewUsers = () => {
 	const [users, setUsers] = useState<UserType[]>([]);
+	const [Puroduct, setPuroduct] = useState<UserType[]>([]);
 	const [reload, setReload] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -17,9 +18,22 @@ const ViewUsers = () => {
 				const users = await res.json();
 				setUsers(users);
 			}
+
 			setIsLoading(false);
 		};
 		fetchUsers();
+
+		const fetchPuroduct = async () => {
+			setIsLoading(true);
+			{
+				const res = await fetch("/api/product/");
+				const users = await res.json();
+				setPuroduct(Puroduct);
+			}
+
+			setIsLoading(false);
+		};
+		fetchPuroduct();
 	}, [reload]);
 
 	const handleReload = () => {
@@ -50,6 +64,17 @@ const ViewUsers = () => {
 						{JSON.stringify(user)}
 					</Link>
 				))}
+
+				<div className="flex flex-col items-center justify-start">
+					{users.map((Puroduct) => (
+						<Link
+							key={Puroduct.id}
+							href={`/user/edit/${Puroduct.id}`}
+							className="flex border-2 w-full px-2 py-1">
+							{JSON.stringify(Puroduct)}
+						</Link>
+					))}
+				</div>
 			</div>
 		</div>
 	);

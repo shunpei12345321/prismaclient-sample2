@@ -12,7 +12,7 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Product" (
     "id" SERIAL NOT NULL,
-    "Product_name" TEXT,
+    "product_name" TEXT,
     "quantity" INTEGER,
     "value" INTEGER,
 
