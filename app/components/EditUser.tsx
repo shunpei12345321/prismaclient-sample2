@@ -128,8 +128,8 @@ const EditUser = () => {
 							}
 						}}
 						type="number"
-						name="fax"
-						id="fax"
+						name="age"
+						id="age"
 						value={age}
 						className="border-2 p-2"
 					/>
