@@ -99,14 +99,14 @@ const EditUser = () => {
 					/>
 				</div>
 				<div className="flex flex-col mb-4">
-					<label htmlFor="fax" className="mb-2">
+					<label htmlFor="email" className="mb-2">
 						fax
 					</label>
 					<input
 						onChange={(event) => {
 							setFax(event.target.value);
 						}}
-						type="fax"
+						type="text"
 						name="fax"
 						id="fax"
 						value={fax}

@@ -20,7 +20,7 @@ const NewUser = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name, email, fax, age }),
+				body: JSON.stringify({ name, email, fax }),
 			});
 			const data = await response.json();
 		}
@@ -113,7 +113,7 @@ const NewUser = () => {
 			<div className="flex flex-col w-full">
 				<p className="font-bold">REST-API Payload:</p>
 				<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
-					{JSON.stringify({ name, email, fax, age })}
+					{JSON.stringify({ name, email, fax })}
 				</div>
 			</div>
 		</div>
