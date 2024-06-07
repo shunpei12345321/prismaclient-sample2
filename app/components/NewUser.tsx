@@ -72,7 +72,7 @@ const NewUser = () => {
 						onChange={(event) => {
 							setFax(event.target.value);
 						}}
-						type="fax"
+						type="text"
 						name="fax"
 						id="fax"
 						className="border-2 p-2"
