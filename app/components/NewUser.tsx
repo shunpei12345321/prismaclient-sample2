@@ -9,13 +9,13 @@ const NewUser = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [fax, setFax] = useState("");
-	const [age, setAge] = useState("");
+	const [age, setAge] = useState<number>();
 	const [isFetching, setIsFetching] = useState(false);
 
 	const handleSubmit = async () => {
 		setIsFetching(true);
 		{
-			const response = await fetch("/api/user", {
+			const response = await fetch("/api/user/", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -84,7 +84,12 @@ const NewUser = () => {
 					</label>
 					<input
 						onChange={(event) => {
-							setAge(event.target.value);
+							const parsedValue = parseInt(event.target.value);
+							if (!isNaN(parsedValue)) {
+								setAge(parsedValue > 0 ? parsedValue : 0);
+							} else {
+								setAge(0);
+							}
 						}}
 						type="number"
 						name="age"
