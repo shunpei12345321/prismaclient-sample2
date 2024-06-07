@@ -10,6 +10,7 @@ const EditUser = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [fax, setFax] = useState("");
+	const [age, setAge] = useState<number>();
 	const [isFetching, setIsFetching] = useState(false);
 
 	useEffect(() => {
@@ -104,10 +105,31 @@ const EditUser = () => {
 						onChange={(event) => {
 							setFax(event.target.value);
 						}}
-						type="text"
+						type="fax"
 						name="fax"
 						id="fax"
 						value={fax}
+						className="border-2 p-2"
+					/>
+				</div>
+
+				<div className="flex flex-col mb-4">
+					<label htmlFor="age" className="mb-2">
+						age
+					</label>
+					<input
+						onChange={(event) => {
+							const parsedValue = parseInt(event.target.value);
+							if (!isNaN(parsedValue)) {
+								setAge(parsedValue > 0 ? parsedValue : 0);
+							} else {
+								setAge(0);
+							}
+						}}
+						type="number"
+						name="age"
+						id="age"
+						value={age}
 						className="border-2 p-2"
 					/>
 				</div>
@@ -140,6 +162,7 @@ const EditUser = () => {
 					<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
 						{JSON.stringify({ name, email, fax, age })}
 					</div>
+					<div></div>
 				</div>
 			)}
 		</div>
