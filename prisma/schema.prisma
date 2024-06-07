@@ -24,7 +24,7 @@ model User {
 
 model Product {
   id      Int      @id @default(autoincrement())
-  product_name    String?
+  productId    String?
   quantity        Int?   
   value           Int? 
 }

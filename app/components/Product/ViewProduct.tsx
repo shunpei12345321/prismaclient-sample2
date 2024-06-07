@@ -4,7 +4,7 @@ import { UserType } from "@/app/api/user/type";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const ViewUsers = () => {
+const ViewProduct = () => {
 	const [users, setUsers] = useState<UserType[]>([]);
 	const [product, setproduct] = useState<UserType[]>([]);
 	const [reload, setReload] = useState(false);
@@ -69,4 +69,4 @@ const ViewUsers = () => {
 	);
 };
 
-export default ViewUsers;
+export default ViewProduct;

@@ -7,22 +7,20 @@ const EditUser = () => {
 	const id = useParams<{ id: string }>().id;
 	const router = useRouter();
 
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [fax, setFax] = useState("");
-	const [age, setAge] = useState<number>();
+	const [productId, setProductId] = useState("");
+	const [quantity, setQuantity] = useState<number>();
+	const [value, setValue] = useState<number>();
 	const [isFetching, setIsFetching] = useState(false);
 
 	useEffect(() => {
 		const fetchUser = async () => {
 			setIsFetching(true);
 			{
-				const res = await fetch(`/api/user/${parseInt(id)}`);
-				const user = await res.json();
-				setName(user.name);
-				setEmail(user.email);
-				setFax(user.fax);
-				setAge(user.age);
+				const res = await fetch(`/api/product/${parseInt(id)}`);
+				const product = await res.json();
+				setProductId(product.product_name);
+				setQuantity(product.product_name);
+				setValue(product.fax);
 			}
 			setIsFetching(false);
 		};
@@ -34,12 +32,12 @@ const EditUser = () => {
 
 		setIsFetching(true);
 		{
-			const res = await fetch(`/api/user/${parseInt(id)}`, {
+			const res = await fetch(`/api/product/${parseInt(id)}`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ id, name, email, fax, age }),
+				body: JSON.stringify({ id, productId, quantity, value }),
 			});
 			const user = await res.json();
 		}
@@ -74,46 +72,15 @@ const EditUser = () => {
 					</label>
 					<input
 						onChange={(event) => {
-							setName(event.target.value);
+							setProductId(event.target.value);
 						}}
 						type="text"
 						name="name"
 						id="name"
-						value={name}
+						value={productId}
 						className="border-2 p-2"
 					/>
 				</div>
-				<div className="flex flex-col mb-4">
-					<label htmlFor="email" className="mb-2">
-						Email
-					</label>
-					<input
-						onChange={(event) => {
-							setEmail(event.target.value);
-						}}
-						type="email"
-						name="email"
-						id="email"
-						value={email}
-						className="border-2 p-2"
-					/>
-				</div>
-				<div className="flex flex-col mb-4">
-					<label htmlFor="fax" className="mb-2">
-						fax
-					</label>
-					<input
-						onChange={(event) => {
-							setFax(event.target.value);
-						}}
-						type="fax"
-						name="fax"
-						id="fax"
-						value={fax}
-						className="border-2 p-2"
-					/>
-				</div>
-
 				<div className="flex flex-col mb-4">
 					<label htmlFor="age" className="mb-2">
 						age
@@ -122,36 +89,37 @@ const EditUser = () => {
 						onChange={(event) => {
 							const parsedValue = parseInt(event.target.value);
 							if (!isNaN(parsedValue)) {
-								setAge(parsedValue > 0 ? parsedValue : 0);
+								setQuantity(parsedValue > 0 ? parsedValue : 0);
 							} else {
-								setAge(0);
+								setQuantity(0);
 							}
 						}}
 						type="number"
 						name="age"
 						id="age"
-						value={age}
+						value={quantity}
 						className="border-2 p-2"
 					/>
 				</div>
-
-				<div className="flex items-center justify-between">
-					{isFetching ? (
-						<p>Updating...</p>
-					) : (
-						<button
-							type="button"
-							onClick={handleSubmit}
-							className="bg-blue-500 text-white px-2 py-1">
-							Submit
-						</button>
-					)}
-					<button
-						type="button"
-						onClick={handleDelete}
-						className="bg-red-500 text-white px-2 py-1">
-						Delete
-					</button>
+				<div className="flex flex-col mb-4">
+					<label htmlFor="age" className="mb-2">
+						age
+					</label>
+					<input
+						onChange={(event) => {
+							const parsedValue = parseInt(event.target.value);
+							if (!isNaN(parsedValue)) {
+								setValue(parsedValue > 0 ? parsedValue : 0);
+							} else {
+								setValue(0);
+							}
+						}}
+						type="number"
+						name="value"
+						id="value"
+						value={value}
+						className="border-2 p-2"
+					/>
 				</div>
 			</form>
 			{/* 下はなくてもいいと思う */}
