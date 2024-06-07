@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ViewUsers from "./components/ViewUsers";
+import ViewProduct from "./components/Product/ViewProduct";
 
 export default function Home() {
 	return (
@@ -9,6 +10,7 @@ export default function Home() {
 					<Link href="/user">[new user]</Link>
 				</div>
 				<ViewUsers />
+				<ViewProduct />
 			</div>
 		</div>
 	);

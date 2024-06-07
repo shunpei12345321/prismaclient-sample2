@@ -8,8 +8,8 @@ export const GET = async (
 ) => {
 	const id: number = parseInt(params.id);
 
-	const user = await prisma.product.findFirst({ where: { id } });
-	return NextResponse.json(user);
+	const product = await prisma.product.findFirst({ where: { id } });
+	return NextResponse.json(product);
 };
 
 export const PUT = async (
@@ -20,11 +20,11 @@ export const PUT = async (
 	const id: number = parseInt(params.id);
 	const { productId, quantity, value } = await req.json();
 
-	const user = await prisma.product.update({
+	const product = await prisma.product.update({
 		data: { productId, quantity, value },
 		where: { id },
 	});
-	return NextResponse.json(user);
+	return NextResponse.json(product);
 };
 
 export const DELETE = async (
@@ -34,8 +34,8 @@ export const DELETE = async (
 ) => {
 	const id: number = parseInt(params.id);
 
-	const user = await prisma.product.delete({
+	const product = await prisma.product.delete({
 		where: { id },
 	});
-	return NextResponse.json(user);
+	return NextResponse.json(product);
 };

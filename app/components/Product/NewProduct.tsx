@@ -6,7 +6,7 @@ import { useState } from "react";
 const NewProduct = () => {
 	const router = useRouter();
 
-	const [product_name, setProduct_name] = useState("");
+	const [productId, setProductId] = useState("");
 	const [quantity, setQuantity] = useState<number>();
 	const [value, setValue] = useState<number>();
 	const [isFetching, setIsFetching] = useState(false);
@@ -19,7 +19,7 @@ const NewProduct = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ product_name, quantity, value }),
+				body: JSON.stringify({ productId, quantity, value }),
 			});
 			const data = await response.json();
 		}
@@ -39,11 +39,11 @@ const NewProduct = () => {
 					</label>
 					<input
 						onChange={(event) => {
-							setProduct_name(event.target.value);
+							setProductId(event.target.value);
 						}}
 						type="text"
-						name="setProduct_name"
-						id="setProduct_name"
+						name="setProductId"
+						id="setProductOd"
 						// value="name" バリューいらない
 						// value入れると固定値になる
 						className="border-2 p-2"

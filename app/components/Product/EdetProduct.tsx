@@ -3,7 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const EditUser = () => {
+const EditProduct = () => {
 	const id = useParams<{ id: string }>().id;
 	const router = useRouter();
 
@@ -133,4 +133,4 @@ const EditUser = () => {
 	);
 };
 
-export default EditUser;
+export default EditProduct;

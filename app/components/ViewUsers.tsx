@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const ViewUsers = () => {
 	const [users, setUsers] = useState<UserType[]>([]);
-	const [product, setproduct] = useState<UserType[]>([]);
+
 	const [reload, setReload] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -22,18 +22,6 @@ const ViewUsers = () => {
 			setIsLoading(false);
 		};
 		fetchUsers();
-
-		const fetchProduct = async () => {
-			setIsLoading(true);
-			{
-				const res = await fetch("/api/product/");
-				const product = await res.json();
-				setproduct(product);
-			}
-
-			setIsLoading(false);
-		};
-		fetchProduct();
 	}, [reload]);
 
 	const handleReload = () => {
