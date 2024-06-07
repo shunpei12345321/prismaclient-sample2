@@ -114,6 +114,22 @@ const EditUser = () => {
 					/>
 				</div>
 
+				<div className="flex flex-col mb-4">
+					<label htmlFor="fax" className="mb-2">
+						age
+					</label>
+					<input
+						onChange={(event) => {
+							setFax(event.target.value);
+						}}
+						type="number"
+						name="fax"
+						id="fax"
+						value={fax}
+						className="border-2 p-2"
+					/>
+				</div>
+
 				<div className="flex items-center justify-between">
 					{isFetching ? (
 						<p>Updating...</p>
@@ -140,7 +156,7 @@ const EditUser = () => {
 				<div className="flex flex-col w-full">
 					<p className="font-bold">REST-API Payload:</p>
 					<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
-						{JSON.stringify({ name, email, fax })}
+						{JSON.stringify({ name, email, fax, age })}
 					</div>
 				</div>
 			)}

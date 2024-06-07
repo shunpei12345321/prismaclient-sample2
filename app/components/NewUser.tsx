@@ -9,12 +9,13 @@ const NewUser = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [fax, setFax] = useState("");
+	const [age, setAge] = useState<number>();
 	const [isFetching, setIsFetching] = useState(false);
 
 	const handleSubmit = async () => {
 		setIsFetching(true);
 		{
-			const response = await fetch("/api/user", {
+			const response = await fetch("/api/user/", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -74,6 +75,25 @@ const NewUser = () => {
 						type="text"
 						name="fax"
 						id="fax"
+						className="border-2 p-2"
+					/>
+				</div>
+				<div className="flex flex-col mb-4">
+					<label htmlFor="age" className="mb-2">
+						age
+					</label>
+					<input
+						onChange={(event) => {
+							const parsedValue = parseInt(event.target.value);
+							if (!isNaN(parsedValue)) {
+								setAge(parsedValue > 0 ? parsedValue : 0);
+							} else {
+								setAge(0);
+							}
+						}}
+						type="number"
+						name="age"
+						id="age"
 						className="border-2 p-2"
 					/>
 				</div>
