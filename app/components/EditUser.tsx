@@ -158,6 +158,7 @@ const EditUser = () => {
 					<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
 						{JSON.stringify({ name, email, fax, age })}
 					</div>
+					<div></div>
 				</div>
 			)}
 		</div>
