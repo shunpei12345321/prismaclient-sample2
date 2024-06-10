@@ -12,3 +12,8 @@ export const POST = async (req: Request, res: NextResponse) => {
 	});
 	return NextResponse.json(newProduct);
 };
+
+export const GET = async (req: Request, res: NextResponse) => {
+	const product = await prisma.user.findMany();
+	return NextResponse.json(product);
+};
