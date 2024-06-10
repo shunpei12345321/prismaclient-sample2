@@ -18,10 +18,10 @@ export const PUT = async (
 	res: NextResponse
 ) => {
 	const id: number = parseInt(params.id);
-	const { name, email, fax } = await req.json();
+	const { name, email } = await req.json();
 
 	const user = await prisma.user.update({
-		data: { name, email, fax },
+		data: { name, email },
 		where: { id },
 	});
 	return NextResponse.json(user);

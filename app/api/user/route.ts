@@ -3,12 +3,9 @@ import prisma from "@/lib/PrismaClient";
 
 export const POST = async (req: Request, res: NextResponse) => {
 	const { name, email, fax } = await req.json();
+
 	const new_user = await prisma.user.create({
-		data: {
-			name,
-			email,
-			fax,
-		},
+		data: { name, email, fax },
 	});
 	return NextResponse.json(new_user);
 };

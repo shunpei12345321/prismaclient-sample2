@@ -1,6 +1,5 @@
 import Link from "next/link";
-import ViewUsers from "./components/ViewUsers";
-
+import ViewUsers from "./user/_components/ViewUsers";
 export default function Home() {
 	return (
 		<div className="container m-auto">

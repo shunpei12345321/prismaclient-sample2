@@ -1,6 +1,6 @@
 "use client";
 
-import { UserType } from "@/app/api/user/type";
+import { UserType } from "@/app/_formSchema/type";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
