@@ -24,13 +24,15 @@ const ViewUsers = () => {
 		fetchUsers();
 	}, [reload]);
 
-	// ここで
+	// ここで最後のユーザーを決めてる
 	useEffect(() => {
 		// usersが更新されたら最後のユーザーを設定
 		if (users.length > 0) {
 			setLastUser(users[users.length - 1]);
 		}
 	}, [users]);
+
+	// 依存配列[users]は、この副作用がusers配列が変更されるたびに再実行されることを指定します。
 
 	const handleReload = () => {
 		setReload(!reload);
