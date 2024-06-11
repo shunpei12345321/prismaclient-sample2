@@ -8,6 +8,8 @@ const ViewUsers = () => {
 	const [users, setUsers] = useState<UserType[]>([]);
 	const [reload, setReload] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [lastUser, setLastUser] = useState<UserType | null>(null); // 最新のユーザーを格納
+	// findmany で大丈夫ただmapを使わずに入れてるだけ
 
 	useEffect(() => {
 		const fetchUsers = async () => {
@@ -21,6 +23,14 @@ const ViewUsers = () => {
 		};
 		fetchUsers();
 	}, [reload]);
+
+	// ここで
+	useEffect(() => {
+		// usersが更新されたら最後のユーザーを設定
+		if (users.length > 0) {
+			setLastUser(users[users.length - 1]);
+		}
+	}, [users]);
 
 	const handleReload = () => {
 		setReload(!reload);
@@ -41,7 +51,9 @@ const ViewUsers = () => {
 					</button>
 				)}
 			</div>
-			<div className="flex flex-col items-center justify-start">
+
+			{/* もともとあるやつ */}
+			{/* <div className="flex flex-col items-center justify-start">
 				{users.map((user) => (
 					<Link
 						key={user.id}
@@ -50,7 +62,16 @@ const ViewUsers = () => {
 						{JSON.stringify(user)}
 					</Link>
 				))}
-			</div>
+			</div> */}
+
+			{lastUser && (
+				<Link
+					key={lastUser.id}
+					href={`/user/edit/${lastUser.id}`}
+					className="flex border-2 w-full px-2 py-1">
+					{JSON.stringify(lastUser)}
+				</Link>
+			)}
 		</div>
 	);
 };
