@@ -1,5 +1,6 @@
 "use client";
 
+import { Agent } from "http";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -9,6 +10,7 @@ const NewUser = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [fax, setFax] = useState("");
+	const [age, setAge] = useState<number>();
 	const [isFetching, setIsFetching] = useState(false);
 
 	const handleSubmit = async () => {
@@ -19,7 +21,7 @@ const NewUser = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name, email, fax }),
+				body: JSON.stringify({ name, email, fax, age }),
 			});
 			const data = await response.json();
 		}
@@ -78,6 +80,23 @@ const NewUser = () => {
 					/>
 				</div>
 
+				<div className="flex flex-col mb-4">
+					<label htmlFor="age" className="mb-2">
+						age
+					</label>
+					<input
+						onChange={(event) => {
+							const inputValue = parseInt(event.target.value);
+							setAge(!isNaN(inputValue) ? Math.max(inputValue, 0) : 0);
+						}}
+						type="number"
+						name="age"
+						id="age"
+						className="border-2 p-2"
+					/>
+					{/* chatGtp で簡単にしてる */}
+				</div>
+
 				{isFetching ? (
 					<p className="text-center">Creating...</p>
 				) : (
@@ -93,7 +112,7 @@ const NewUser = () => {
 			<div className="flex flex-col w-full">
 				<p className="font-bold">REST-API Payload:</p>
 				<div className="border-2 items-center justify-center p-5 overflow-auto whitespace-normal">
-					{JSON.stringify({ name, email, fax })}
+					{JSON.stringify({ name, email, fax, age })}
 				</div>
 			</div>
 		</div>

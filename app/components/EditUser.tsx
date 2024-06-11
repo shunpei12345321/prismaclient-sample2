@@ -22,6 +22,7 @@ const EditUser = () => {
 				setName(user.name);
 				setEmail(user.email);
 				setFax(user.fax);
+				setAge(user.age);
 			}
 			setIsFetching(false);
 		};
